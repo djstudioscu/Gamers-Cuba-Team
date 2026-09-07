@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamers Cuba Team - Tu portal de videojuegos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d0d12;
+            --card-bg: #1a1a24;
+            --text-color: #e0e0e0;
+            --primary-color: #00f2ff; /* Cian neón */
+            --secondary-color: #ff0055; /* Magenta neón */
+            --accent-color: #7000ff; /* Púrpura */
+            --font-title: 'Oswald', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(13, 13, 18, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--card-bg);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--text-color);
+            -webkit-text-fill-color: var(--text-color);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .search-box input {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            outline: none;
+            font-family: var(--font-body);
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(13,13,18,1)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-family: var(--font-title);
+        }
+
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #000;
+            padding: 0.8rem 2.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: var(--font-title);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #fff;
+            box-shadow: 0 0 20px var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* News Grid */
+        .news-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--card-bg);
+            padding-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            text-transform: uppercase;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 5px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #2a2a35;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .card-image {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0,0,0,0.8);
+            color: var(--primary-color);
+            padding: 0.2rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: var(--font-title);
+            border: 1px solid var(--primary-color);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .news-card:hover .card-title {
+            color: var(--primary-color);
+        }
+
+        .card-excerpt {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-family: var(--font-title);
+        }
+
+        /* Footer */
+        footer {
+            background: #08080c;
+            padding: 3rem;
+            margin-top: 4rem;
+            border-top: 2px solid var(--card-bg);
+            text-align: center;
+        }
+
+        .footer-content h3 {
+            font-family: var(--font-title);
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: #888;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #222;
+            padding-top: 1.5rem;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+            .nav-links, .search-box {
+                display: none; /* Oculto por simplicidad en móvil, podrías hacer un menú desplegable */
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .news-section {
+                padding: 0 1.5rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Gamers <span>Cuba Team</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Análisis</a></li>
+                <li><a href="#">Guías</a></li>
+                <li><a href="#">Hardware</a></li>
+                <li><a href="#">eSports</a></li>
+            </ul>
+            <div class="search-box">
+                <input type="text" placeholder="Buscar juegos...">
+            </div>
+            <button class="menu-toggle">☰</button>
+        </nav>
+    </header>
+
+    <!-- Noticia Principal -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">Análisis Destacado</span>
+            <h1>Cyberpunk 2077: Phantom Liberty redefine el género RPG</h1>
+            <p>El equipo de Gamers Cuba Team analiza a fondo la última expansión que promete solucionar los errores del pasado y ofrecer una experiencia inolvidable.</p>
+            <a href="#" class="btn">Leer Análisis</a>
+        </div>
+    </section>
+
+    <!-- Últimas Noticias -->
+    <section class="news-section">
+        <div class="section-header">
+            <h2 class="section-title">Últimas Noticias</h2>
+        </div>
+
+        <div class="news-grid">
+            <!-- Noticia 1 -->
+            <article class="news-card">
+                <div class="card-image">
+                    <span class="category">eSports</span>
+                    <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1025&auto=format&fit=crop" alt="Noticia eSports">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">El equipo cubano logra el campeonato regional de Dota 2</h3>
+                    <p class="card-excerpt">Una victoria histórica para la escena gamer de la isla, derrotando a favoritos en una final llena de emociones.</p>
+                    <div class="card-meta">
+                        <span>15 Oct 2023</span>
+                        <a href="#" class="read-more">Leer Más →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Noticia 2 -->
+            <article class="news-card">
+                <div class="card-image">
+                    <span class="category">Hardware</span>
+                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=1025&auto=format&fit=crop" alt="Noticia Hardware">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Análisis de la nueva generación de tarjetas gráficas RTX</h3>
+                    <p class="card-excerpt">Rendimiento, temperaturas y precios. Te contamos si realmente vale la pena actualizar tu setup este año.</p>
+                    <div class="card-meta">
+                        <span>14 Oct 2023</span>
+                        <a href="#" class="read-more">Leer Más →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Noticia 3 -->
+            <article class="news-card">
+                <div class="card-image">
+                    <span class="category">Guías</span>
+                    <img src="https://images.unsplash.com/photo-1605870445919-838d190579ef?q=80&w=1025&auto=format&fit=crop" alt="Noticia Guías">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Baldur's Gate 3: Los mejores builds para tu primer juego</h3>
+                    <p class="card-excerpt">¿Problemas en el Acto 1? Aquí tienes las clases y combinaciones más poderosas para sobrevivir en los Reinos Olvidados.</p>
+                    <div class="card-meta">
+                        <span>13 Oct 2023</span>
+                        <a href="#" class="read-more">Leer Más →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Noticia 4 -->
+            <article class="news-card">
+                <div class="card-image">
+                    <span class="category">Indies</span>
+                    <img src="https://images.unsplash.com/photo-1620207418302-439b387441b0?q=80&w=1025&auto=format&fit=crop" alt="Noticia Indies">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">5 juegos independientes cubanos que debes jugar ya</h3>
+                    <p class="card-excerpt">El talento local está creciendo. Descubre joyas ocultas creadas por desarrolladores de la isla.</p>
+                    <div class="card-meta">
+                        <span>12 Oct 2023</span>
+                        <a href="#" class="read-more">Leer Más →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Noticia 5 -->
+            <article class="news-card">
+                <div class="card-image">
+                    <span class="category">Consolas</span>
+                    <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?q=80&w=1025&auto=format&fit=crop" alt="Noticia Consolas">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">PlayStation 5 Slim: Filtración de fecha de lanzamiento y precio</h3>
+                    <p class="card-excerpt">Rumores apuntan a que la consola más compacta llegará a finales de año. Te contamos todos los detalles.</p>
+                    <div class="card-meta">
+                        <span>11 Oct 2023</span>
+                        <a href="#" class="read-more">Leer Más →</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Noticia 6 -->
+            <article class="news-card">
+                <div class="card-image">
+                    <span class="category">Móviles</span>
+                    <img src="https://images.unsplash.com/photo-1605692616422-0472b1cb3388?q=80&w=1025&auto=format&fit=crop" alt="Noticia Móviles">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Los mejores juegos para jugar sin conexión en tu móvil</h3>
+                    <p class="card-excerpt">¿Viajando o sin datos? Aquí tienes la lista definitiva de juegos para pasar el rato en cualquier lugar.</p>
+                    <div class="card-meta">
+                        <span>10 Oct 2023</span>
+                        <a href="#" class="read-more">Leer Más →</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3 class="logo">Gamers <span>Cuba Team</span></h3>
+            <p style="color: #888; margin-bottom: 2rem;">Tu portal número 1 de videojuegos en la isla.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Twitter">🐦</a>
+                <a href="#" aria-label="YouTube">▶️</a>
+                <a href="#" aria-label="Discord">🎮</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Gamers Cuba Team. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Pequeño script para el botón de menú móvil (futuro)
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            alert('Aquí se desplegaría el menú para móviles.');
+        });
+    </script>
+</body>
+</html>
