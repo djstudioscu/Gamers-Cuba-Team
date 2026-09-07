@@ -51,7 +51,7 @@ Sigue nuestras redes sociales para estar al día con el mundo gaming:
 
 ### Opción 1: Ver Online (GitHub Pages)
 Puedes ver la web en funcionamiento en nuestro hosting gratuito:
-👉 **[https://tuusuario.github.io/gamers-cuba-team/](https://djstudioscu.github.io/gamers-cuba-team/)
+👉 **[https://djstudioscu.github.io/gamers-cuba-team/](https://djstudioscu.github.io/gamers-cuba-team/)
 
 ### Opción 2: Ver en Local
 Si quieres verlo o modificarlo en tu computadora:
